@@ -7,7 +7,7 @@
 
 Composable Canvas HUD instruments for vehicle telemetry, camera overlays and recorded replay.
 
-[npm package](https://www.npmjs.com/package/hud-ini) · [Source](https://github.com/GitGudNow99/hud-ini) · [Issues](https://github.com/GitGudNow99/hud-ini/issues)
+[Live demo](https://gitgudnow99.github.io/hud-ini/) · [Documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) · [npm package](https://www.npmjs.com/package/hud-ini) · [Source](https://github.com/GitGudNow99/hud-ini) · [Issues](https://github.com/GitGudNow99/hud-ini/issues)
 
 - Transparent instruments for aircraft, multirotors, VTOL, rovers, boats, submersibles and PTZ cameras.
 - Framework-independent Canvas API, web component and optional React component.
@@ -115,10 +115,11 @@ The MAVLink adapter accepts decoded envelopes and converts wire units to HUD rea
 
 ## Documentation
 
+- [Online documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started): installation, examples and searchable integration guides.
 - [API guide](docs/api.md): vehicle profiles, telemetry, themes, instruments, sensors and AR.
 - [Terrain guide](docs/terrain.md): height grids, provider contracts and partial occlusion.
 - [Height-grid example](examples/heightfield.ts), [mesh provider](examples/three-visibility.ts) and [depth rendering](examples/three-depth.ts). The last two examples require Three.js in the host application.
-- [Demo website](demo/README.md): interactive previews, vehicle scenarios and searchable documentation.
+- [Live demo](https://gitgudnow99.github.io/hud-ini/): interactive previews and vehicle scenarios. See the [demo guide](demo/README.md) to run it locally.
 - [Contributing](CONTRIBUTING.md): development, validation and release commands.
 
 ## License

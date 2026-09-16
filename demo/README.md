@@ -1,5 +1,7 @@
 # Demo website
 
+Open the [live demo](https://gitgudnow99.github.io/hud-ini/) or [online documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) on GitHub Pages.
+
 This website demonstrates the [hud-ini npm package](https://www.npmjs.com/package/hud-ini). To use the library in your application, run `npm install hud-ini` and follow the [installation guide](../README.md#installation).
 
 To run the website, clone the [source repository](https://github.com/GitGudNow99/hud-ini) and install its development dependencies:
@@ -30,5 +32,7 @@ The demo frontend uses [Adobe React Spectrum 2](https://react-spectrum.adobe.com
 The lab's **Display state** selector previews information, warning, critical and emergency messages, return-to-home guidance, position hold, landing and stale guidance. **Additional instruments** contains secondary readouts and the synthetic camera inset. The shell uses Spectrum icons for navigation, playback and actions. Vehicle glyphs use Spectrum's `createIcon` adapter to retain their domain-specific silhouettes and inherited sizing.
 
 ## Development
+
+GitHub Actions deploys `demo-dist/` to GitHub Pages after validation passes on `main`. Pull requests run validation without deploying. The website uses relative asset URLs and hash navigation so it works under the repository's `/hud-ini/` path.
 
 Import application controls from `@react-spectrum/s2`. Compose layouts with the `style` macro in `demo/layout.ts`; let Spectrum own component colors, typography, focus rings and internal spacing. Vite runs `unplugin-parcel-macros` before the React plugin and uses Lightning CSS to combine and minimize the generated styles. Do not add a second component styling system. The published HUD entry points do not import Spectrum or its stylesheet.

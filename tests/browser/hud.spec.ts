@@ -8,7 +8,8 @@ async function loaded(page: import('@playwright/test').Page) {
 }
 
 test('all recorded MAVLink types select and render without runtime errors', async ({ page }) => {
-  test.setTimeout(60000);
+  // CI renders every vehicle preview without a hardware GPU.
+  test.setTimeout(process.env.CI ? 180000 : 60000);
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/#lab');
@@ -97,6 +98,7 @@ test('overlay leaves the camera open at desktop, tablet and mobile sizes', async
 });
 
 test('palettes and white-video contrast remain available', async ({ page }, info) => {
+  test.setTimeout(process.env.CI ? 90000 : 30000);
   await page.goto('/#lab');
   await loaded(page);
   await selectVehicle(page, 'plane');

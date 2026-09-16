@@ -17,6 +17,8 @@ The demo runs at `http://127.0.0.1:5198`. See the [demo guide](demo/README.md) f
 
 `npm run build` produces the library and declarations in `dist/`. Each build removes the previous library output. `npm run build:demo` builds the separate website in `demo-dist/`.
 
+Pushes to `main` deploy the [public website](https://gitgudnow99.github.io/hud-ini/) after the Node.js 22 and 24 validation jobs pass. The CI workflow builds and deploys the Pages artifact. Pull requests never deploy.
+
 ## Package boundaries
 
 - Keep the Canvas core free of runtime dependencies. React is an optional peer behind `hud-ini/react`.

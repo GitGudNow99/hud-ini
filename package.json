@@ -2,7 +2,7 @@
   "name": "hud-ini",
   "version": "0.1.0",
   "description": "Composable flight and camera HUD instruments for video, telemetry and recorded replay.",
-  "homepage": "https://github.com/GitGudNow99/hud-ini#readme",
+  "homepage": "https://gitgudnow99.github.io/hud-ini/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GitGudNow99/hud-ini.git"
