@@ -1,5 +1,5 @@
-import { createHeightfieldProvider, ArVisibilityResolver } from 'hud-ini/terrain';
-import type { HudArScene } from 'hud-ini';
+import { createHeightfieldProvider, ArVisibilityResolver } from '@gitgudnow99/hud-ini/terrain';
+import type { HudArScene } from '@gitgudnow99/hud-ini';
 
 /** Package-owned synthetic ridge, with an explicit gap in terrain coverage to the east. */
 export function ridgeProvider() {

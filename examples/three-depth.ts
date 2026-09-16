@@ -1,6 +1,6 @@
 import { BufferGeometry, Float32BufferAttribute, LineBasicMaterial, LineSegments } from 'three';
-import { arGeometry } from 'hud-ini';
-import type { HudArObject } from 'hud-ini';
+import { arGeometry } from '@gitgudnow99/hud-ini';
+import type { HudArObject } from '@gitgudnow99/hud-ini';
 
 /** Add to the host's terrain scene to depth-test each wireframe fragment. */
 export function createArWireframe(object: HudArObject) {

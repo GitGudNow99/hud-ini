@@ -16,8 +16,8 @@ export interface DocPage {
   sections: DocSection[];
 }
 
-export const reactExample = `import { HudIni } from 'hud-ini/react';
-import type { HudFrame } from 'hud-ini';
+export const reactExample = `import { HudIni } from '@gitgudnow99/hud-ini/react';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function CameraView({ frame }: { frame: HudFrame }) {
   return (
@@ -41,12 +41,12 @@ export const documentation: DocPage[] = [
         id: 'installation',
         title: 'Install the package',
         paragraphs: [
-          'Install hud-ini from the public npm registry in your application.',
+          'Install @gitgudnow99/hud-ini from the public npm registry in your application.',
           'The Canvas core has no runtime dependencies. React 18 or 19 is an optional peer for the React component. The demo uses Spectrum 2 and Three.js; neither is required by your HUD integration.',
         ],
-        code: [{ label: 'npm', value: 'npm install hud-ini' }],
+        code: [{ label: 'npm', value: 'npm install @gitgudnow99/hud-ini' }],
         links: [
-          { label: 'Package on npm', href: 'https://www.npmjs.com/package/hud-ini' },
+          { label: 'Package on npm', href: 'https://www.npmjs.com/package/@gitgudnow99/hud-ini' },
           { label: 'Source on GitHub', href: 'https://github.com/GitGudNow99/hud-ini' },
           { label: 'Report an issue', href: 'https://github.com/GitGudNow99/hud-ini/issues' },
         ],
@@ -83,7 +83,7 @@ export const documentation: DocPage[] = [
         id: 'react',
         title: 'React component',
         paragraphs: [
-          'Import HudIni from hud-ini/react. Pass a new frame as telemetry or the display clock changes. The component releases its resize observer when unmounted. Entry points are safe to import during server rendering; canvas drawing starts after mounting.',
+          'Import HudIni from @gitgudnow99/hud-ini/react. Pass a new frame as telemetry or the display clock changes. The component releases its resize observer when unmounted. Entry points are safe to import during server rendering; canvas drawing starts after mounting.',
         ],
         code: [{ label: 'React', value: reactExample }],
       },
@@ -96,8 +96,8 @@ export const documentation: DocPage[] = [
         code: [
           {
             label: 'TypeScript',
-            value: `import { HudController } from 'hud-ini';
-import type { HudFrame } from 'hud-ini';
+            value: `import { HudController } from '@gitgudnow99/hud-ini';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function mountHud(canvas: HTMLCanvasElement) {
   const hud = new HudController(canvas, { preset: 'boat' });
@@ -118,9 +118,9 @@ export function mountHud(canvas: HTMLCanvasElement) {
         code: [
           {
             label: 'TypeScript',
-            value: `import { defineHudIni } from 'hud-ini/element';
-import type { HudIniElement } from 'hud-ini/element';
-import type { HudFrame } from 'hud-ini';
+            value: `import { defineHudIni } from '@gitgudnow99/hud-ini/element';
+import type { HudIniElement } from '@gitgudnow99/hud-ini/element';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function mountHud(parent: HTMLElement, frame: HudFrame) {
   defineHudIni();
@@ -176,7 +176,7 @@ export function mountHud(parent: HTMLElement, frame: HudFrame) {
         code: [
           {
             label: 'TypeScript · Minimal frame',
-            value: `import type { HudFrame } from 'hud-ini';
+            value: `import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export const frame: HudFrame = {
   time: 12,
@@ -209,7 +209,7 @@ export const frame: HudFrame = {
         code: [
           {
             label: 'TypeScript',
-            value: `import { MavlinkTelemetry } from 'hud-ini/adapters';
+            value: `import { MavlinkTelemetry } from '@gitgudnow99/hud-ini/adapters';
 
 export const feed = new MavlinkTelemetry({
   systemId: 42, componentId: 1, label: 'USV 01',
@@ -232,8 +232,8 @@ export const frame = feed.snapshot(12);`,
         code: [
           {
             label: 'TypeScript',
-            value: `import { HudController } from 'hud-ini';
-import { MavlinkTelemetry } from 'hud-ini/adapters';
+            value: `import { HudController } from '@gitgudnow99/hud-ini';
+import { MavlinkTelemetry } from '@gitgudnow99/hud-ini/adapters';
 
 export function startDisplay(canvas: HTMLCanvasElement, feed: MavlinkTelemetry) {
   const hud = new HudController(canvas);
@@ -278,8 +278,8 @@ export function startDisplay(canvas: HTMLCanvasElement, feed: MavlinkTelemetry) 
         code: [
           {
             label: 'TypeScript',
-            value: `import { presetForMavType } from 'hud-ini';
-import type { HudOptions } from 'hud-ini';
+            value: `import { presetForMavType } from '@gitgudnow99/hud-ini';
+import type { HudOptions } from '@gitgudnow99/hud-ini';
 
 export const options: HudOptions = {
   preset: presetForMavType(11).id,
@@ -326,7 +326,7 @@ export const options: HudOptions = {
         code: [
           {
             label: 'TypeScript',
-            value: `import type { HudOptions } from 'hud-ini';
+            value: `import type { HudOptions } from '@gitgudnow99/hud-ini';
 
 export const options: HudOptions = {
   preset: 'plane', size: 'small', staleAfterS: 1,
@@ -360,7 +360,7 @@ export const options: HudOptions = {
         code: [
           {
             label: 'TypeScript',
-            value: `import type { HudFrame } from 'hud-ini';
+            value: `import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export const frame: HudFrame = {
   time: 12, source: 'demo', label: 'USV 01',
@@ -401,7 +401,7 @@ export const frame: HudFrame = {
         code: [
           {
             label: 'TypeScript',
-            value: `import type { HudOptions } from 'hud-ini';
+            value: `import type { HudOptions } from '@gitgudnow99/hud-ini';
 
 export const options: HudOptions = {
   preset: 'boat',
@@ -437,8 +437,8 @@ export const options: HudOptions = {
           },
           {
             label: 'TypeScript',
-            value: `import { HudController, hudThemeFromCss } from 'hud-ini';
-import type { HudFrame } from 'hud-ini';
+            value: `import { HudController, hudThemeFromCss } from '@gitgudnow99/hud-ini';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function applyTheme(hud: HudController, container: HTMLElement, frame: HudFrame) {
   hud.update(frame, { preset: 'boat', theme: hudThemeFromCss(container) });
@@ -480,7 +480,7 @@ export function applyTheme(hud: HudController, container: HTMLElement, frame: Hu
         code: [
           {
             label: 'TypeScript',
-            value: `import type { HudArCamera, HudArScene } from 'hud-ini';
+            value: `import type { HudArCamera, HudArScene } from '@gitgudnow99/hud-ini';
 
 export function makeScene(camera: HudArCamera, at: number): HudArScene {
   return {
@@ -527,8 +527,8 @@ export function makeScene(camera: HudArCamera, at: number): HudArScene {
         code: [
           {
             label: 'TypeScript',
-            value: `import { ArVisibilityResolver, createHeightfieldProvider } from 'hud-ini/terrain';
-import type { HudArScene } from 'hud-ini';
+            value: `import { ArVisibilityResolver, createHeightfieldProvider } from '@gitgudnow99/hud-ini/terrain';
+import type { HudArScene } from '@gitgudnow99/hud-ini';
 
 const provider = createHeightfieldProvider({
   referenceFrame: 'site-enu-v1', origin: [-10, 0],

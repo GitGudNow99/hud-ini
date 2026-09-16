@@ -21,7 +21,7 @@ Pushes to `main` deploy the [public website](https://gitgudnow99.github.io/hud-i
 
 ## Package boundaries
 
-- Keep the Canvas core free of runtime dependencies. React is an optional peer behind `hud-ini/react`.
+- Keep the Canvas core free of runtime dependencies. React is an optional peer behind `@gitgudnow99/hud-ini/react`.
 - Keep every entry point safe to import without a DOM. Initialize browser resources only when mounting or registering a component.
 - `src/render.ts` owns instrument layout and typography. `src/controller.ts` owns canvas resolution and lifecycle for both wrappers.
 - `src/presets.ts` maps vehicle families. The MAVLink adapter owns units, identity, per-message freshness and firmware mode semantics.
@@ -52,7 +52,7 @@ After changing the fixture generator, run `npm run fixtures`, then repeat `npm r
 
 ## Release
 
-Release from the `main` branch of [GitGudNow99/hud-ini](https://github.com/GitGudNow99/hud-ini). Update the version in `package.json` and `package-lock.json` together. The public package is [hud-ini on npm](https://www.npmjs.com/package/hud-ini).
+Release from the `main` branch of [GitGudNow99/hud-ini](https://github.com/GitGudNow99/hud-ini). Update the version in `package.json` and `package-lock.json` together. The public package is [hud-ini on npm](https://www.npmjs.com/package/@gitgudnow99/hud-ini).
 
 ```sh
 npm run check

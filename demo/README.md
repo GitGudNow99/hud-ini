@@ -2,7 +2,7 @@
 
 Open the [live demo](https://gitgudnow99.github.io/hud-ini/) or [online documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) on GitHub Pages.
 
-This website demonstrates the [hud-ini npm package](https://www.npmjs.com/package/hud-ini). To use the library in your application, run `npm install hud-ini` and follow the [installation guide](../README.md#installation).
+This website demonstrates the [hud-ini npm package](https://www.npmjs.com/package/@gitgudnow99/hud-ini). To use the library in your application, run `npm install @gitgudnow99/hud-ini` and follow the [installation guide](../README.md#installation).
 
 To run the website, clone the [source repository](https://github.com/GitGudNow99/hud-ini) and install its development dependencies:
 

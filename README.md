@@ -7,7 +7,7 @@
 
 Composable Canvas HUD instruments for vehicle telemetry, camera overlays and recorded replay.
 
-[Live demo](https://gitgudnow99.github.io/hud-ini/) · [Documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) · [npm package](https://www.npmjs.com/package/hud-ini) · [Source](https://github.com/GitGudNow99/hud-ini) · [Issues](https://github.com/GitGudNow99/hud-ini/issues)
+[Live demo](https://gitgudnow99.github.io/hud-ini/) · [Documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) · [npm package](https://www.npmjs.com/package/@gitgudnow99/hud-ini) · [Source](https://github.com/GitGudNow99/hud-ini) · [Issues](https://github.com/GitGudNow99/hud-ini/issues)
 
 - Transparent instruments for aircraft, multirotors, VTOL, rovers, boats, submersibles and PTZ cameras.
 - Framework-independent Canvas API, web component and optional React component.
@@ -17,21 +17,23 @@ Composable Canvas HUD instruments for vehicle telemetry, camera overlays and rec
 
 ## Installation
 
+hud-ini is published as `@gitgudnow99/hud-ini`.
+
 ```sh
-npm install hud-ini
+npm install @gitgudnow99/hud-ini
 ```
 
 For React applications, install React 18 or 19 in the host application. Other entry points do not require React. hud-ini ships ES modules and supports TypeScript's `NodeNext` and `Bundler` module resolution. Server imports require Node.js 22.12 or newer; use Node.js 24 for development. Rendering requires a browser with Canvas 2D and `ResizeObserver`.
 
-Install the library from [npm](https://www.npmjs.com/package/hud-ini). To build or test the library from source, follow the [contributing guide](CONTRIBUTING.md).
+Install the library from [npm](https://www.npmjs.com/package/@gitgudnow99/hud-ini). To build or test the library from source, follow the [contributing guide](CONTRIBUTING.md).
 
 ## Canvas
 
 Size a canvas with CSS, then pass frames to its controller:
 
 ```ts
-import { HudController } from 'hud-ini';
-import type { HudFrame } from 'hud-ini';
+import { HudController } from '@gitgudnow99/hud-ini';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function mountHud(canvas: HTMLCanvasElement) {
   const hud = new HudController(canvas, { preset: 'boat' });
@@ -47,8 +49,8 @@ The controller handles device pixel ratio, resizing and accessibility text. Call
 ## React
 
 ```tsx
-import { HudIni } from 'hud-ini/react';
-import type { HudFrame } from 'hud-ini';
+import { HudIni } from '@gitgudnow99/hud-ini/react';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function CameraView({ frame }: { frame: HudFrame }) {
   return (
@@ -69,9 +71,9 @@ The parent defines the viewport. The component starts drawing after mounting and
 ## Web component
 
 ```ts
-import { defineHudIni } from 'hud-ini/element';
-import type { HudIniElement } from 'hud-ini/element';
-import type { HudFrame } from 'hud-ini';
+import { defineHudIni } from '@gitgudnow99/hud-ini/element';
+import type { HudIniElement } from '@gitgudnow99/hud-ini/element';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 defineHudIni();
 
@@ -85,20 +87,20 @@ Place `<hud-ini>` inside a sized container. Registration is explicit. Removing t
 
 ## Entry points
 
-| Import             | Purpose                                                                            |
-| ------------------ | ---------------------------------------------------------------------------------- |
-| `hud-ini`          | Canvas renderer and controller, themes, presets, telemetry helpers and AR geometry |
-| `hud-ini/react`    | `HudIni` and `HudIniProps`                                                         |
-| `hud-ini/element`  | `defineHudIni` and `HudIniElement`                                                 |
-| `hud-ini/adapters` | `MavlinkTelemetry`, `fromPtz` and adapter types                                    |
-| `hud-ini/terrain`  | Height-grid visibility provider and asynchronous resolver                          |
+| Import                          | Purpose                                                                            |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| `@gitgudnow99/hud-ini`          | Canvas renderer and controller, themes, presets, telemetry helpers and AR geometry |
+| `@gitgudnow99/hud-ini/react`    | `HudIni` and `HudIniProps`                                                         |
+| `@gitgudnow99/hud-ini/element`  | `defineHudIni` and `HudIniElement`                                                 |
+| `@gitgudnow99/hud-ini/adapters` | `MavlinkTelemetry`, `fromPtz` and adapter types                                    |
+| `@gitgudnow99/hud-ini/terrain`  | Height-grid visibility provider and asynchronous resolver                          |
 
 ## Telemetry
 
 Each numeric reading carries its value and observation time:
 
 ```ts
-import type { HudFrame } from 'hud-ini';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 const frame: HudFrame = {
   time: 12,

@@ -1,7 +1,7 @@
 import { Raycaster, Vector3 } from 'three';
 import type { Object3D } from 'three';
-import type { ArVisibilityProvider } from 'hud-ini/terrain';
-import type { HudWorldPoint } from 'hud-ini';
+import type { ArVisibilityProvider } from '@gitgudnow99/hud-ini/terrain';
+import type { HudWorldPoint } from '@gitgudnow99/hud-ini';
 
 /** Example host adapter. This world uses x=east, y=up, z=south. Requires the host's Three.js. */
 export function createMeshVisibilityProvider(options: {

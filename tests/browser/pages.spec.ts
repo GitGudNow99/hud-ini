@@ -61,7 +61,7 @@ test('docs open without fixtures, support deep links, search, copying and topic 
   await expect(page.getByRole('heading', { name: 'Getting started', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Copy React · CameraView.tsx' }).click();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-    "import { HudIni } from 'hud-ini/react'",
+    "import { HudIni } from '@gitgudnow99/hud-ini/react'",
   );
   await page.getByRole('searchbox', { name: 'Search documentation' }).fill('occlusion');
   await page

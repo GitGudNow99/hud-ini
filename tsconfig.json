@@ -4,8 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "hud-ini": ["./src/index.ts"],
-      "hud-ini/terrain": ["./src/terrain.ts"],
+      "@gitgudnow99/hud-ini": ["./src/index.ts"],
+      "@gitgudnow99/hud-ini/terrain": ["./src/terrain.ts"],
       "@/*": ["./demo/*"]
     },
     "lib": ["ES2022", "DOM", "DOM.Iterable"],

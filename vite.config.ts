@@ -8,8 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': new URL('./demo', import.meta.url).pathname,
-      'hud-ini/terrain': new URL('./src/terrain.ts', import.meta.url).pathname,
-      'hud-ini': new URL('./src/index.ts', import.meta.url).pathname,
+      '@gitgudnow99/hud-ini/terrain': new URL('./src/terrain.ts', import.meta.url).pathname,
+      '@gitgudnow99/hud-ini': new URL('./src/index.ts', import.meta.url).pathname,
     },
   },
   root: 'demo',

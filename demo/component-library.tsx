@@ -39,7 +39,7 @@ function snippet(item: Specimen, insetWidth: number) {
   const panels = Object.fromEntries(
     instrumentPanels.map(([key]) => [key, item.panels.includes(key)]),
   );
-  return `import { HudIni } from 'hud-ini/react';\n\n<HudIni\n  frame={telemetry}\n  options={{\n    preset: '${item.preset}',\n    panels: ${JSON.stringify(panels, null, 2).replaceAll('\n', '\n    ')}${item.id === 'inset' ? `,\n    inset: { image: cameraVideo, at: cameraTimestamp, label: 'CAMERA', width: ${insetWidth} }` : ''}\n  }}\n/>`;
+  return `import { HudIni } from '@gitgudnow99/hud-ini/react';\n\n<HudIni\n  frame={telemetry}\n  options={{\n    preset: '${item.preset}',\n    panels: ${JSON.stringify(panels, null, 2).replaceAll('\n', '\n    ')}${item.id === 'inset' ? `,\n    inset: { image: cameraVideo, at: cameraTimestamp, label: 'CAMERA', width: ${insetWidth} }` : ''}\n  }}\n/>`;
 }
 
 export function ComponentLibrary({

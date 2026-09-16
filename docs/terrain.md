@@ -1,16 +1,16 @@
 # Terrain visibility integration
 
-Use `hud-ini/terrain` to classify AR anchors against your terrain data while keeping your application's renderer, terrain source and transport independent of hud-ini.
+Use `@gitgudnow99/hud-ini/terrain` to classify AR anchors against your terrain data while keeping your application's renderer, terrain source and transport independent of hud-ini.
 
-Install the [hud-ini npm package](https://www.npmjs.com/package/hud-ini) with `npm install hud-ini`. The terrain entry point is included in the package. See the [installation guide](../README.md#installation) for requirements.
+Install the [hud-ini npm package](https://www.npmjs.com/package/@gitgudnow99/hud-ini) with `npm install @gitgudnow99/hud-ini`. The terrain entry point is included in the package. See the [installation guide](../README.md#installation) for requirements.
 
 ## Start with a height grid
 
 The built-in provider consumes resident height samples. It has no runtime dependencies and performs no downloads. Your application owns terrain loading, licensing, credentials and geographic conversion.
 
 ```ts
-import { ArVisibilityResolver, createHeightfieldProvider } from 'hud-ini/terrain';
-import type { HudArScene, HudFrame } from 'hud-ini';
+import { ArVisibilityResolver, createHeightfieldProvider } from '@gitgudnow99/hud-ini/terrain';
+import type { HudArScene, HudFrame } from '@gitgudnow99/hud-ini';
 
 const provider = createHeightfieldProvider({
   referenceFrame: 'site-enu-v1',
@@ -85,7 +85,7 @@ When terrain changes, create a new height-grid provider and resolver, and destro
 Implement this interface for a mesh engine, worker or service:
 
 ```ts
-import type { ArVisibilityProvider } from 'hud-ini/terrain';
+import type { ArVisibilityProvider } from '@gitgudnow99/hud-ini/terrain';
 
 // Your transport implements this contract. Keep its URL/authentication in your application.
 export function terrainService(evaluate: ArVisibilityProvider['evaluate']): ArVisibilityProvider {

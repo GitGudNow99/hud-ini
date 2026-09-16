@@ -30,7 +30,7 @@ test('documentation examples compile against the public package APIs', () => {
     noEmit: true,
     paths: Object.fromEntries(
       ['index', 'react', 'element', 'adapters', 'terrain'].map((name) => [
-        name === 'index' ? 'hud-ini' : `hud-ini/${name}`,
+        name === 'index' ? '@gitgudnow99/hud-ini' : `@gitgudnow99/hud-ini/${name}`,
         [resolve(`src/${name}`)],
       ]),
     ),

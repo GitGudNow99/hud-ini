@@ -265,7 +265,7 @@ export function ThemeStudio({
     2,
   );
   const css = stylesheet(effective);
-  const integration = `import { hudThemeFromCss } from 'hud-ini';\nimport { HudIni } from 'hud-ini/react';\n\n// Run after your container mounts, and again when its CSS theme changes.\nconst theme = hudThemeFromCss(container);\n\n<HudIni frame={telemetry} options={{ theme }} />`;
+  const integration = `import { hudThemeFromCss } from '@gitgudnow99/hud-ini';\nimport { HudIni } from '@gitgudnow99/hud-ini/react';\n\n// Run after your container mounts, and again when its CSS theme changes.\nconst theme = hudThemeFromCss(container);\n\n<HudIni frame={telemetry} options={{ theme }} />`;
   return (
     <DialogTrigger>
       <ActionButton id="theme-open" aria-label="Theme settings">

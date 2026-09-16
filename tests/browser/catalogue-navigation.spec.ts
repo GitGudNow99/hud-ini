@@ -77,7 +77,7 @@ test('keyboard card navigation, shareable details and stable copyable data snaps
   );
   await page.getByRole('tab', { name: 'Code', exact: true }).click();
   await expect(page.locator('#component-detail-code')).toContainText(
-    "import { HudIni } from 'hud-ini/react'",
+    "import { HudIni } from '@gitgudnow99/hud-ini/react'",
   );
   await page.locator('#component-copy').click();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("preset: 'plane'");

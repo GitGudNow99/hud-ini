@@ -1,5 +1,5 @@
 {
-  "name": "hud-ini",
+  "name": "@gitgudnow99/hud-ini",
   "version": "0.1.0",
   "description": "Composable flight and camera HUD instruments for video, telemetry and recorded replay.",
   "homepage": "https://gitgudnow99.github.io/hud-ini/",

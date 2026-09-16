@@ -103,10 +103,10 @@ try {
   assert(!existsSync(join(consumer, 'node_modules/react')), 'React must remain optional.');
   run(
     `import assert from 'node:assert/strict';
-     import { renderHud, HudController, readingStatus, presetForMavType } from 'hud-ini';
-     import { defineHudIni } from 'hud-ini/element';
-     import { MavlinkTelemetry, fromPtz } from 'hud-ini/adapters';
-     import { ArVisibilityResolver, createHeightfieldProvider } from 'hud-ini/terrain';
+     import { renderHud, HudController, readingStatus, presetForMavType } from '@gitgudnow99/hud-ini';
+     import { defineHudIni } from '@gitgudnow99/hud-ini/element';
+     import { MavlinkTelemetry, fromPtz } from '@gitgudnow99/hud-ini/adapters';
+     import { ArVisibilityResolver, createHeightfieldProvider } from '@gitgudnow99/hud-ini/terrain';
      assert.equal(typeof window, 'undefined');
      assert.equal(typeof document, 'undefined');
      for (const fn of [renderHud, HudController, MavlinkTelemetry, fromPtz,
@@ -119,7 +119,7 @@ try {
     consumer,
   );
 
-  const installed = join(consumer, 'node_modules/hud-ini');
+  const installed = join(consumer, 'node_modules', manifest.name);
   for (const file of files) {
     if (!/\.md$/.test(file)) continue;
     const content = readFileSync(join(installed, file), 'utf8');
@@ -148,7 +148,7 @@ try {
     `import assert from 'node:assert/strict';
      import { createElement } from 'react';
      import { renderToStaticMarkup } from 'react-dom/server';
-     import { HudIni } from 'hud-ini/react';
+     import { HudIni } from '@gitgudnow99/hud-ini/react';
      const html = renderToStaticMarkup(createElement(HudIni, {
        frame: { time: 0, source: 'demo', label: 'Preview' },
      }));
@@ -157,11 +157,11 @@ try {
   );
   writeFileSync(
     join(consumer, 'index.tsx'),
-    `import { HudController, type HudFrame, type HudOptions } from 'hud-ini';
-     import { HudIni, type HudIniProps } from 'hud-ini/react';
-     import { defineHudIni, type HudIniElement } from 'hud-ini/element';
-     import { MavlinkTelemetry, type MavlinkOptions } from 'hud-ini/adapters';
-     import { ArVisibilityResolver, createHeightfieldProvider } from 'hud-ini/terrain';
+    `import { HudController, type HudFrame, type HudOptions } from '@gitgudnow99/hud-ini';
+     import { HudIni, type HudIniProps } from '@gitgudnow99/hud-ini/react';
+     import { defineHudIni, type HudIniElement } from '@gitgudnow99/hud-ini/element';
+     import { MavlinkTelemetry, type MavlinkOptions } from '@gitgudnow99/hud-ini/adapters';
+     import { ArVisibilityResolver, createHeightfieldProvider } from '@gitgudnow99/hud-ini/terrain';
      const frame: HudFrame = { time: 0, source: 'demo', label: 'Preview' };
      const options: HudOptions = { preset: 'boat' };
      const props: HudIniProps = { frame, options };

@@ -1,9 +1,9 @@
 # API guide
 
-Use these examples to connect hud-ini to your application. Install the [public npm package](https://www.npmjs.com/package/hud-ini):
+Use these examples to connect hud-ini to your application. Install the [public npm package](https://www.npmjs.com/package/@gitgudnow99/hud-ini):
 
 ```sh
-npm install hud-ini
+npm install @gitgudnow99/hud-ini
 ```
 
 See the [package README](../README.md#installation) for requirements and entry points.
@@ -31,8 +31,8 @@ See the [package README](../README.md#installation) for requirements and entry p
 ### React
 
 ```tsx
-import { HudIni } from 'hud-ini/react';
-import type { HudFrame } from 'hud-ini';
+import { HudIni } from '@gitgudnow99/hud-ini/react';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 export function VehicleView({ frame }: { frame: HudFrame }) {
   return (
@@ -51,9 +51,9 @@ export function VehicleView({ frame }: { frame: HudFrame }) {
 ### Web component
 
 ```ts
-import { defineHudIni } from 'hud-ini/element';
-import type { HudIniElement } from 'hud-ini/element';
-import type { HudFrame } from 'hud-ini';
+import { defineHudIni } from '@gitgudnow99/hud-ini/element';
+import type { HudIniElement } from '@gitgudnow99/hud-ini/element';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 defineHudIni();
 const overlay = document.createElement('hud-ini') as HudIniElement;
@@ -70,8 +70,8 @@ The parent owns the viewport size and must use `position: relative`. Registratio
 ### Canvas
 
 ```ts
-import { HudController } from 'hud-ini';
-import type { HudFrame } from 'hud-ini';
+import { HudController } from '@gitgudnow99/hud-ini';
+import type { HudFrame } from '@gitgudnow99/hud-ini';
 
 const hud = new HudController(document.querySelector('#hud')!, { preset: 'boat' });
 export const update = (frame: HudFrame) => hud.update(frame);
@@ -87,7 +87,7 @@ Each numeric reading is `{ value, at, valid? }`. Both `at` and `frame.time` use 
 Tape readouts distinguish `NO DATA`, `STALE`, `INVALID` and `CLOCK` states. Expired actuator commands disappear and their values turn amber. The mode line includes armed state when supplied; both expire with the heartbeat.
 
 ```ts
-import { MavlinkTelemetry } from 'hud-ini/adapters';
+import { MavlinkTelemetry } from '@gitgudnow99/hud-ini/adapters';
 
 const feed = new MavlinkTelemetry({
   systemId: 42,
@@ -170,7 +170,7 @@ The Canvas renderer accepts `options.theme`. To author themes in CSS, set inheri
 ```
 
 ```ts
-import { HudController, hudThemeFromCss } from 'hud-ini';
+import { HudController, hudThemeFromCss } from '@gitgudnow99/hud-ini';
 
 const hud = new HudController(canvas);
 hud.update(frame, { preset: 'boat', theme: hudThemeFromCss(container) });
@@ -259,7 +259,7 @@ Camera and object timestamps expire independently. The renderer limits each scen
 
 #### Terrain visibility
 
-Import `ArVisibilityResolver` and `createHeightfieldProvider` from **`hud-ini/terrain`**. The optional module evaluates line of sight from the camera to each object's anchor. It accepts a local height grid, or a host-defined provider backed by mesh raycasts, a worker or a terrain service. The Canvas core remains independent of terrain vendors and 3D engines.
+Import `ArVisibilityResolver` and `createHeightfieldProvider` from **`@gitgudnow99/hud-ini/terrain`**. The optional module evaluates line of sight from the camera to each object's anchor. It accepts a local height grid, or a host-defined provider backed by mesh raycasts, a worker or a terrain service. The Canvas core remains independent of terrain vendors and 3D engines.
 
 Results explicitly distinguish `visible`, `occluded` and `unknown`. Missing tiles, incompatible coordinate frames, expired results and changed camera/target positions cannot become a clear line of sight. The default display dims and dashes blocked objects with an `OCC` label. Unknown results remain visible with `LOS ?`. Set `options.arOcclusion` to `hide` to omit anchor-occluded objects, or `off` to ignore classification. An explicit `object.visible: false` always hides the object. No visibility metadata means unclassified, not verified clear.
 
