@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="210 100 834 834" role="img" aria-labelledby="title">
+  <title id="title">hud-ini</title>
+  <g fill="#009f99">
+    <path id="corner" d="M 472 132 H 330 C 281 132 242 171 242 220 V 334 Q 242 350 258 350 H 288 Q 304 350 304 334 V 222 C 304 204 318 190 336 190 H 472 Q 488 190 488 174 V 148 Q 488 132 472 132 Z"/>
+    <use href="#corner" transform="translate(1254 0) scale(-1 1)"/>
+    <use href="#corner" transform="translate(0 1034) scale(1 -1)"/>
+    <use href="#corner" transform="translate(1254 1034) scale(-1 -1)"/>
+    <path d="M 386 288 L 542 212 V 440 H 710 L 870 524 V 730 L 710 808 V 590 H 542 V 808 L 386 732 V 578 L 586 536 H 782 L 626 470 L 551 508 L 386 550 Z"/>
+    <path d="M 712 214 L 870 288 V 502 L 712 418 Z"/>
+  </g>
+</svg>

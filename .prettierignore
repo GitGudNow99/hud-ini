@@ -1,0 +1,8 @@
+node_modules
+dist
+demo-dist
+demo/public
+test-results
+playwright-report
+LICENSE
+package-lock.json

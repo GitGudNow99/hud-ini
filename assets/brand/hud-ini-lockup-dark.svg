@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 64" role="img" aria-labelledby="title">
+  <title id="title">hud-ini</title>
+  <g transform="scale(0.0767386091) translate(-210 -100)"><g xmlns="http://www.w3.org/2000/svg" fill="#49ded8">
+    <path id="corner" d="M 472 132 H 330 C 281 132 242 171 242 220 V 334 Q 242 350 258 350 H 288 Q 304 350 304 334 V 222 C 304 204 318 190 336 190 H 472 Q 488 190 488 174 V 148 Q 488 132 472 132 Z" />
+    <use href="#corner" transform="translate(1254 0) scale(-1 1)" />
+    <use href="#corner" transform="translate(0 1034) scale(1 -1)" />
+    <use href="#corner" transform="translate(1254 1034) scale(-1 -1)" />
+    <path d="M 386 288 L 542 212 V 440 H 710 L 870 524 V 730 L 710 808 V 590 H 542 V 808 L 386 732 V 578 L 586 536 H 782 L 626 470 L 551 508 L 386 550 Z" />
+    <path d="M 712 214 L 870 288 V 502 L 712 418 Z" />
+  </g>
+  </g>
+  <g transform="translate(43.6 -179.7) scale(0.2)"><g xmlns="http://www.w3.org/2000/svg" fill="#f1f8f7" transform="translate(0 34)">
+    <path d="M 162 921 H 208 V 980 H 248 C 291 980 316 1006 316 1048 V 1126 H 268 V 1050 C 268 1034 260 1026 244 1026 H 208 V 1126 H 162 Z" />
+    <path d="M 330 980 H 378 V 1060 C 378 1077 387 1084 410 1084 C 433 1084 442 1077 442 1060 V 980 H 490 V 1064 C 490 1107 463 1128 410 1128 C 357 1128 330 1107 330 1064 Z" />
+    <path fill-rule="evenodd" d="M 628 921 H 676 V 1126 H 575 C 529 1126 504 1101 504 1054 C 504 1007 529 980 575 980 H 628 Z M 628 1026 H 580 C 561 1026 552 1035 552 1054 C 552 1073 561 1082 580 1082 H 628 Z" />
+    <rect x="696" y="1020" width="88" height="44" rx="7" />
+    <circle cx="826" cy="946" r="26" />
+    <path d="M 802 980 H 850 V 1126 H 802 Z" />
+    <path d="M 870 980 H 954 C 998 980 1022 1006 1022 1048 V 1126 H 974 V 1050 C 974 1034 966 1026 950 1026 H 918 V 1126 H 870 Z" />
+    <circle cx="1064" cy="946" r="26" />
+    <path d="M 1040 980 H 1088 V 1126 H 1040 Z" />
+  </g>
+</g>
+</svg>

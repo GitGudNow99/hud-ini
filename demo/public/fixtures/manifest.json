@@ -1,0 +1,249 @@
+{
+  "schema": "hud-ini.fixtures.v1",
+  "duration": 30,
+  "rate": 10,
+  "generatorSha256": "d6bbcdf5d6764612687bbf6633b22796c6834206867f677d5218766957abb668",
+  "outputMappingSha256": "bbb0d0cb44fca2ca5d6d40a55c5114ab8be43ae22379f2467f9f0b332edd866f",
+  "scenarios": [
+    {
+      "id": "multirotor-2",
+      "preset": "multirotor",
+      "label": "Multirotor / QUADROTOR",
+      "mavType": 2,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "414f1f053f809222e4752a5095fc089a0d3f30d045fac366de6deb7dc1f70c75",
+      "wireSha256": "d237f073a87e4a859b285cc9d7123de92dd85225e60082994d596421ab1231a3"
+    },
+    {
+      "id": "multirotor-13",
+      "preset": "multirotor",
+      "label": "Multirotor / HEXAROTOR",
+      "mavType": 13,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "05e89dc9441c98694d5333daeda6d761cb25387f39ed1d519f1f727f618c6bdc",
+      "wireSha256": "6c3ad6240c5354ec4e47cf8662f0f5285aa643902f748bff521fc4a7ea0242d1"
+    },
+    {
+      "id": "multirotor-14",
+      "preset": "multirotor",
+      "label": "Multirotor / OCTOROTOR",
+      "mavType": 14,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "d49003aa984509b9dbb1ec379565f135cbd309360a078dfeefa18e3c26ee512b",
+      "wireSha256": "c1110d565861d5f01efb122fefd05c506f456e95ca6066d4a5641d0a5d0e9ee4"
+    },
+    {
+      "id": "multirotor-15",
+      "preset": "multirotor",
+      "label": "Multirotor / TRICOPTER",
+      "mavType": 15,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "7a02e8d189a7e7a9e8c3b27d445ea5b2a3c3a494df86e9f5bf97c87ec74f8154",
+      "wireSha256": "eed8a00223be55f2f0986761f35adcea06d8eb0a4060f9c3fa6869f386dc5df6"
+    },
+    {
+      "id": "multirotor-29",
+      "preset": "multirotor",
+      "label": "Multirotor / DODECAROTOR",
+      "mavType": 29,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "adb7c8a1bc3f5482efa9ef45d68df69129a8265f4ae895de7b68491262ee3e50",
+      "wireSha256": "e2051bfdb85ec7487f9a9ab0387a56a1c0db7e26517023324022211fa86fd1f6"
+    },
+    {
+      "id": "multirotor-35",
+      "preset": "multirotor",
+      "label": "Multirotor / DECAROTOR",
+      "mavType": 35,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "a57ea5babd1ef3d7af9c12cfe32fcce708698095374f4b4e817a808fb54f1d36",
+      "wireSha256": "aae18dcd69200f47b9037dbc9597e8925dfce6548b5a345daa0b1c21e66301f2"
+    },
+    {
+      "id": "multirotor-43",
+      "preset": "multirotor",
+      "label": "Multirotor / GENERIC_MULTIROTOR",
+      "mavType": 43,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "0058da27f864d8fa02cd4314a12903f44c06e4309a06246a4ad0aea7a21e0325",
+      "wireSha256": "c754432afb7206a59cdf9654fe9b2d4a4b949faa161180b790c459f75082e2dc"
+    },
+    {
+      "id": "helicopter-3",
+      "preset": "helicopter",
+      "label": "Helicopter / COAXIAL",
+      "mavType": 3,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "62f7fb029eff3b16304dd545dfd8e8e6ba985d81bb7d649d34192f9510e1dbf8",
+      "wireSha256": "8510b825c78671a3233bc74db8cffc634cccdedf9f0224ddff22792e43c44946"
+    },
+    {
+      "id": "helicopter-4",
+      "preset": "helicopter",
+      "label": "Helicopter / HELICOPTER",
+      "mavType": 4,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "49ebd914c547caad89a7d1cc6a79538c2a291ed474c8e9f488c7e0cd175a0579",
+      "wireSha256": "2c7cec13609e28a74f8e10dc07dec49a719130d368ccb78bb93203d2f5cc8752"
+    },
+    {
+      "id": "plane-1",
+      "preset": "plane",
+      "label": "Fixed wing / FIXED_WING",
+      "mavType": 1,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "592b9628b1916044cae284684ddb8ba46cecbd325a9022d9c4bc57b9af99d287",
+      "wireSha256": "1c23df38927499b86912a42dd14a4bb9c482f717cf9c23fa8bf9daf7bb25c6fc"
+    },
+    {
+      "id": "vtol-19",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_TAILSITTER_DUOROTOR",
+      "mavType": 19,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "058bda96a6e96f8890201cb4f13740f49293a5462c76cb40e9391beb0b8232df",
+      "wireSha256": "24563dbd1d4d01b07ea0282c009cfa192af2efc5124c2cd504561751438f452a"
+    },
+    {
+      "id": "vtol-20",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_TAILSITTER_QUADROTOR",
+      "mavType": 20,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "2520909e2370a8c9fcbc287d513efba64b9c6fd3f41863e49967d16f997f796e",
+      "wireSha256": "649cfa200dd991bf105db0be95525349b63c0af0ba30cdd93785d071f14f39c7"
+    },
+    {
+      "id": "vtol-21",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_TILTROTOR",
+      "mavType": 21,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "8f128ff49d46ccc065a694eeaa6c98bfaa34294f8c6290b8af516e81e1bc3a4c",
+      "wireSha256": "dec1a0e7c2fd649cd0478df42d5e82ecabeccc72f4f0257dc57968871234095d"
+    },
+    {
+      "id": "vtol-22",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_FIXEDROTOR",
+      "mavType": 22,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "33256db85ec6b3689d20485783f3f88b3044ae9d7d955d3bbd85e5323739c5e7",
+      "wireSha256": "dca159dc0e47459d404c61bc0f9cc3de1d608710e5c0d3af4385ed1e7c6f2dcc"
+    },
+    {
+      "id": "vtol-23",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_TAILSITTER",
+      "mavType": 23,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "761e7a011381c1d0914d9a94e22f6b03184d9331f364d1f28abb47179ed95454",
+      "wireSha256": "cfbd52ebe7d93484d2b7012ecdb44dcc94ad0887784eeb95a53a50a046b20ec7"
+    },
+    {
+      "id": "vtol-24",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_TILTWING",
+      "mavType": 24,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "d3f4885ad2d5832d36b915b059bbbf990afef04f8f593047d63267345cce7737",
+      "wireSha256": "5f76146d2d0cd9562f605f606040b8eacbc71d7a6704dd93d8d2874e3015c1a0"
+    },
+    {
+      "id": "vtol-25",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_RESERVED5",
+      "mavType": 25,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "7f68fe592264e8079838ae10ce3ec5c8b0a8fec6a9154b9481bbe7d1655ca676",
+      "wireSha256": "005c07948f456de210d198e7f05eee076f101a2fe5d1064ec9bd15029291bb7a"
+    },
+    {
+      "id": "vtol-47",
+      "preset": "vtol",
+      "label": "VTOL / QuadPlane / VTOL_GYRODYNE",
+      "mavType": 47,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "5402306f8d314d09601483a50edde258bf4ff27201f36500aa5b43ef8483f413",
+      "wireSha256": "9507d90c861c0ccf523c72f72eb90dbb3d7830afd5d777290241cc053eeb4319"
+    },
+    {
+      "id": "rover-10",
+      "preset": "rover",
+      "label": "Rover / GROUND_ROVER",
+      "mavType": 10,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "a34f9e19168c673003c51b7d691a4c7400b695b0f62a5206ccac412f00a0702d",
+      "wireSha256": "f19a7827b9c8792f0546984d2d4629a1793f733e8e076a5e960767dc4517b305"
+    },
+    {
+      "id": "boat-11",
+      "preset": "boat",
+      "label": "USV / boat / SURFACE_BOAT",
+      "mavType": 11,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "e20e9e69d528286cb1eb69bae4a408caf8474a1153c84209c77c0600d1449afd",
+      "wireSha256": "e498f13030a745bb12cb0f2c34b9c7d36ae81295371e0c8e18bfc6c65573bd79"
+    },
+    {
+      "id": "submarine-12",
+      "preset": "submarine",
+      "label": "Submarine / ROV / SUBMARINE",
+      "mavType": 12,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "e4dbff78905a9d7d5827d9f58317dde32f85cca71712798b22eca0c9ddbe15b4",
+      "wireSha256": "9d4b9adb6334402993dc5275727ba7d417ca6429cf51397096bcba99ca6cd11c"
+    },
+    {
+      "id": "tracker-5",
+      "preset": "tracker",
+      "label": "Antenna tracker / ANTENNA_TRACKER",
+      "mavType": 5,
+      "frames": 301,
+      "packets": 1266,
+      "jsonSha256": "446b8bbcc80041b9275d093a4029e123edb71f6850fd3962a073ad8619568090",
+      "wireSha256": "7791b4e46b8813ba20bbb70374313ba972e22283bf08d31f41286c4a91cf7415"
+    },
+    {
+      "id": "blimp-7",
+      "preset": "blimp",
+      "label": "Blimp / airship / AIRSHIP",
+      "mavType": 7,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "263c5d4020a373ca40f615bdb0d291041ad6bcc8bf1461f82d3a6d24778075a3",
+      "wireSha256": "54f80b51d629e39e510056e101f9c20231bca5c3a2dfc1a9ba5858dad6793e04"
+    },
+    {
+      "id": "generic-0",
+      "preset": "generic",
+      "label": "Generic vehicle / GENERIC",
+      "mavType": 0,
+      "frames": 301,
+      "packets": 1567,
+      "jsonSha256": "5c412998f8b9ff62698aa7630cd3075817a48d66d3b3084e4a4a3c44fa620f5b",
+      "wireSha256": "3bbd9d2a287aefb6d7dbe144bca14320742b308e569b13d19cddba8dbe01adb6"
+    }
+  ]
+}

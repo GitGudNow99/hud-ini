@@ -1,0 +1,127 @@
+{
+  "name": "hud-ini",
+  "version": "0.1.0",
+  "description": "Composable flight and camera HUD instruments for video, telemetry and recorded replay.",
+  "homepage": "https://github.com/GitGudNow99/hud-ini#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GitGudNow99/hud-ini.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GitGudNow99/hud-ini/issues"
+  },
+  "keywords": [
+    "hud",
+    "canvas",
+    "telemetry",
+    "mavlink",
+    "react",
+    "web-component"
+  ],
+  "type": "module",
+  "license": "GPL-2.0-or-later",
+  "files": [
+    "dist",
+    "src",
+    "assets/brand/*.svg",
+    "tsconfig.build.json",
+    "tools/build-package.mjs",
+    "docs/api.md",
+    "docs/terrain.md",
+    "examples",
+    "README.md",
+    "CONTRIBUTING.md",
+    "demo/README.md",
+    "demo/public/media/README.md",
+    "demo/public/licenses",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./element": {
+      "types": "./dist/element.d.ts",
+      "import": "./dist/element.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./terrain": {
+      "types": "./dist/terrain.d.ts",
+      "import": "./dist/terrain.js"
+    },
+    "./adapters": {
+      "types": "./dist/adapters.d.ts",
+      "import": "./dist/adapters.js"
+    }
+  },
+  "peerDependencies": {
+    "react": ">=18 <20"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node tools/build-package.mjs",
+    "build:demo": "vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:browser": "npm run build:demo && playwright test",
+    "test:package": "node tools/check-package.mjs",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run build",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run check && npm run test:wire && npm run test:browser && npm run test:package",
+    "fixtures": "tsx tools/generate-fixtures.ts",
+    "test:wire": "tsx tools/check-wire.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@fontsource/rajdhani": "^5.3.0",
+    "@playwright/test": "^1.58.0",
+    "@react-spectrum/s2": "^1.7.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^10.10.0",
+    "globals": "^16.0.0",
+    "lightningcss": "^1.33.0",
+    "mavlink-mappings": "1.0.22-20260311",
+    "node-mavlink": "^2.3.0",
+    "prettier": "^3.6.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.186.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0",
+    "unplugin-parcel-macros": "^0.2.0",
+    "vite": "^7.3.0",
+    "vitest": "^4.0.0"
+  },
+  "overrides": {
+    "mavlink-mappings": "1.0.22-20260311",
+    "xml2js": "^0.6.2"
+  }
+}
