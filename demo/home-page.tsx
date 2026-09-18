@@ -133,7 +133,8 @@ function HomePreview({
             { ...frame, time },
             {
               preset: flight.preset as VehiclePresetId,
-              size: canvas.clientWidth < 600 ? 'small' : 'medium',
+              // One size at every width, so the layout scales instead of rearranging.
+              size: 'small',
               theme: hudTheme(),
               // The camera is calibrated and the pose is measured, so the spatial cues hold.
               verticalFovDeg: visibleVerticalFovDeg(canvas, flight.camera),

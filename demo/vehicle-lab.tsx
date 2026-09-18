@@ -33,6 +33,7 @@ import { displayStates, instrumentPanels, sensorExample, stateFrame, testCamera 
 import type { DisplayState } from './states';
 import { hudTheme } from './theme';
 import { loadFixture } from './fixtures';
+import { loadRecording, recordings, replayFrame } from './replay';
 import type { Fixture, Scenario } from './catalogue';
 import { Check, Choice, CopyButton } from './controls';
 
@@ -58,6 +59,9 @@ const profileNames: Partial<Record<VehiclePresetId, string>> = {
   generic: 'Generic',
 };
 
+/** Marks a variant that plays a recorded flight rather than a generated scenario. */
+const RECORDED = 'recorded:';
+
 export function VehicleLab({
   scenarios,
   active,
@@ -69,7 +73,18 @@ export function VehicleLab({
 }) {
   const [presetId, setPreset] = useState<VehiclePresetId>('boat');
   const preset = vehiclePresets.find((p) => p.id === presetId)!;
-  const entries = scenarios.filter((s) => s.preset === presetId);
+  // Recorded flights join the profile they were flown with, ahead of the synthetic scenarios.
+  const entries = [
+    ...recordings
+      .filter(() => presetId === 'multirotor')
+      .map((r) => ({
+        id: `${RECORDED}${r.id}`,
+        preset: 'multirotor' as const,
+        label: r.label,
+        mavType: 2,
+      })),
+    ...scenarios.filter((s) => s.preset === presetId),
+  ];
   const [variant, setVariant] = useState(() => scenarios.find((s) => s.preset === 'boat')!.id);
   const [fixture, setFixture] = useState<Fixture>();
   const [loadStatus, setLoadStatus] = useState('Loading scenario…');
@@ -97,6 +112,8 @@ export function VehicleLab({
   const [time, setTime] = useState(6);
   const timeRef = useRef(6);
   const [frame, setFrame] = useState<HudFrame>();
+  // Synthetic scenarios all run 30 seconds; a recorded flight runs as long as its coverage.
+  const duration = fixture?.duration ?? 30;
   const [fov, setFov] = useState(58);
   const canvas = useRef<HTMLCanvasElement>(null),
     viewport = useRef<HTMLDivElement>(null);
@@ -228,7 +245,13 @@ export function VehicleLab({
       return;
     }
     setLoadStatus('Loading scenario…');
-    void loadFixture(variant)
+    const pending = variant.startsWith(RECORDED)
+      ? loadRecording(variant.slice(RECORDED.length)).then((flight): Fixture => ({
+          duration: flight.duration,
+          frames: flight.frames.map((_, i) => replayFrame(flight, i)),
+        }))
+      : loadFixture(variant);
+    void pending
       .then((next) => {
         if (!disposed) {
           setFixture(next);
@@ -437,7 +460,7 @@ export function VehicleLab({
             id="play"
             aria-label={playing ? 'Pause scenario' : 'Play scenario'}
             onPress={() => {
-              if (timeRef.current >= 30) timeRef.current = 0;
+              if (timeRef.current >= duration) timeRef.current = 0;
               setPlaying(!playing);
             }}
           >
@@ -456,7 +479,7 @@ export function VehicleLab({
             }}
             aria-label="Scenario time"
             minValue={0}
-            maxValue={30}
+            maxValue={duration}
             step={0.1}
             value={time}
             onChange={(value) => {
