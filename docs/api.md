@@ -109,6 +109,7 @@ The adapter accepts decoded messages with canonical MAVLink `snake_case` field n
 - Heading is clockwise from north. Roll is positive right-wing-down; pitch is positive nose-up.
 - Speed is metres per second. The USV display converts ground speed to knots.
 - GLOBAL_POSITION_INT relative altitude is metres above home, labeled `REL HOME`.
+- A vehicle with no position fix publishes no GLOBAL_POSITION_INT. The adapter then reads VFR_HUD altitude, which the common definition reports above mean sea level, and labels the datum `MSL`. GLOBAL_POSITION_INT takes ownership of altitude wherever it arrives in the feed, so a vehicle that sends it keeps the `REL HOME` datum throughout.
 - To derive depth from MSL altitude, pass a calibrated `depthOriginM` to `MavlinkTelemetry`. The fixture uses sea surface MSL = 0. Without a reference, depth stays unavailable.
 - Course comes from horizontal velocity and stays unavailable below 0.1 m/s.
 - `fromPtz()` takes calibrated camera angles. ONVIF normalized positions are not degrees. Supply camera heading separately.

@@ -139,15 +139,16 @@ export function mountHud(parent: HTMLElement, frame: HudFrame) {
         title: 'Recorded video',
         paragraphs: [
           'Place a video element beneath the HUD canvas. Keep the media aspect ratio and use your camera calibration for attitude and AR. For recorded flight logs, convert video.currentTime to the log clock, including the recording offset, before selecting the telemetry sample.',
-          'The home page uses a licensed aerial recording from Mixkit, with independently authored telemetry to demonstrate the instruments. Those values are not measurements from the recording. Attitude, AR, position and navigation cues are hidden because the clip has no calibrated camera pose or associated flight log. Desktop video is cropped to a wide viewport without stretching.',
-          'The demo plays a local, silent H.264 copy. Pause stops both video and telemetry; reduced-motion preferences start it paused. The footage is only part of the website and is excluded from the npm package.',
+          'The home page plays two recorded flights. Their telemetry was measured during the same flight as the imagery, so attitude, speed, altitude and position are real readings rather than an illustration. The page names the source dataset, its license, and any value the converter resolved instead of recording.',
+          'Desktop crops the video to a wide viewport without stretching. That crop hides the top and the bottom of the frame, so the page passes the field of view of the visible slice rather than the field of view of the whole recording. Passing the wrong one misplaces the horizon and every AR anchor.',
+          'The demo plays local, silent H.264 copies. Pause stops both video and telemetry; reduced-motion preferences start it paused. The recordings are only part of the website and are excluded from the npm package.',
         ],
         links: [
           {
-            label: 'Original footage on Mixkit',
-            href: 'https://mixkit.co/free-stock-video/flying-over-a-beautiful-tropical-landscape-5369/',
+            label: 'Zurich Urban MAV Dataset',
+            href: 'https://rpg.ifi.uzh.ch/zurichmavdataset.html',
           },
-          { label: 'Mixkit video license', href: 'https://mixkit.co/license/#videoFree' },
+          { label: 'UZH-FPV Drone Racing Dataset', href: 'https://fpv.ifi.uzh.ch/datasets/' },
         ],
       },
       {

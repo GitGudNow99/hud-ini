@@ -28,11 +28,12 @@
     "tools/build-package.mjs",
     "docs/api.md",
     "docs/terrain.md",
+    "docs/replay.md",
     "examples",
     "README.md",
     "CONTRIBUTING.md",
     "demo/README.md",
-    "demo/public/media/README.md",
+    "demo/public/replay/README.md",
     "demo/public/licenses",
     "LICENSE",
     "NOTICE.md"

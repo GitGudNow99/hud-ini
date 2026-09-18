@@ -85,10 +85,10 @@ test('docs open without fixtures, support deep links, search, copying and topic 
 });
 
 test('a failed video has a usable retry and leaves documentation reachable', async ({ page }) => {
-  await page.route('**/media/coast.mp4', (route) => route.abort());
+  await page.route('**/replay/agz-zurich.mp4', (route) => route.abort());
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeVisible();
-  await page.unroute('**/media/coast.mp4');
+  await page.unroute('**/replay/agz-zurich.mp4');
   await page.getByRole('button', { name: 'Retry preview' }).click();
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeHidden();
   await page.getByRole('button', { name: 'Play home preview' }).click();

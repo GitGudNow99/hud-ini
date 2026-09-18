@@ -145,3 +145,33 @@ it('takes calibrated PTZ input and allows its clock to expire', () => {
   expect(readValue(f.panDeg, 3)).toBeUndefined();
   expect(f.headingDeg).toBeUndefined();
 });
+
+describe('altitude without a position fix', () => {
+  const feed = () => new MavlinkTelemetry({ systemId: 42 });
+
+  it('takes VFR_HUD altitude as MSL when GLOBAL_POSITION_INT never arrives', () => {
+    const f = feed();
+    f.ingest(packet('VFR_HUD', { alt: 132.5, groundspeed: 6, climb: 0.5 }));
+    const frame = f.snapshot(4);
+    expect(frame.altitudeM?.value).toBe(132.5);
+    expect(frame.altitudeMslM?.value).toBe(132.5);
+    expect(frame.altitudeDatum).toBe('MSL');
+  });
+
+  it('keeps GLOBAL_POSITION_INT as the altitude source once it arrives', () => {
+    const f = feed();
+    f.ingest(packet('VFR_HUD', { alt: 132.5 }, 1));
+    f.ingest(packet('GLOBAL_POSITION_INT', { relative_alt: 40_000, alt: 130_000 }, 2));
+    f.ingest(packet('VFR_HUD', { alt: 140 }, 3));
+    const frame = f.snapshot(4);
+    expect(frame.altitudeM?.value).toBe(40);
+    expect(frame.altitudeMslM?.value).toBe(130);
+    expect(frame.altitudeDatum).toBe('REL HOME');
+  });
+
+  it('leaves altitude unavailable when VFR_HUD omits it', () => {
+    const f = feed();
+    f.ingest(packet('VFR_HUD', { groundspeed: 6 }));
+    expect(f.snapshot(4).altitudeM).toBeUndefined();
+  });
+});

@@ -126,7 +126,6 @@ export function App() {
       >
         {page === 'home' && (
           <HomePage
-            scenarios={scenarios}
             theme={themeRevision}
             loadError={error}
             onRetry={() => setAttempt((n) => n + 1)}

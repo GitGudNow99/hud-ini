@@ -17,21 +17,41 @@ import {
 import ChevronRight from '@react-spectrum/s2/icons/ChevronRight';
 import Pause from '@react-spectrum/s2/icons/Pause';
 import Play from '@react-spectrum/s2/icons/Play';
-import { HudController, sampleIndexAt } from '../src/index.js';
+import { HudController } from '../src/index.js';
 import type { VehiclePresetId } from '../src/index.js';
-import type { Scenario } from './catalogue';
-import { loadFixture } from './fixtures';
+import { loadRecording, recordings, replayFrame, replayIndexAt } from './replay';
+import type { Recording } from './replay';
 import { hudTheme } from './theme';
 import * as layout from './layout';
 
+/**
+ * Vertical field of view of the part of the recording the viewport actually shows.
+ *
+ * The hero crops the video with `object-fit: cover`, so a wide viewport hides the top and the
+ * bottom of the frame. The recording's own field of view then describes pixels nobody can see,
+ * which misplaces the horizon and every AR anchor. Measure the visible slice instead.
+ */
+function visibleVerticalFovDeg(
+  canvas: HTMLCanvasElement,
+  camera: { width: number; height: number; verticalFovDeg: number },
+): number {
+  const boxWidth = canvas.clientWidth;
+  const boxHeight = canvas.clientHeight;
+  if (!(boxWidth > 0 && boxHeight > 0)) return camera.verticalFovDeg;
+  const focal = camera.height / 2 / Math.tan((camera.verticalFovDeg * Math.PI) / 360);
+  const cover = Math.max(boxWidth / camera.width, boxHeight / camera.height);
+  const visibleHeight = Math.min(camera.height, boxHeight / cover);
+  return (2 * Math.atan(visibleHeight / 2 / focal) * 180) / Math.PI;
+}
+
 function HomePreview({
-  scenario,
+  recording,
   theme,
   paused,
   showHud,
   onPaused,
 }: {
-  scenario: Scenario;
+  recording: Recording;
   theme: string;
   paused: boolean;
   showHud: boolean;
@@ -100,32 +120,26 @@ function HomePreview({
     };
     setLoading(true);
     setError('');
-    void loadFixture(scenario.id)
-      .then((fixture) => {
+    void loadRecording(recording.id)
+      .then((flight) => {
         if (disposed) return;
         hud = new HudController(canvas);
         paint = () => {
           if (disposed || !canvas.isConnected) return;
-          const narrow = canvas.clientWidth < 600;
-          const time = (6 + media.currentTime) % fixture.duration;
-          const frame = { ...fixture.frames[sampleIndexAt(fixture.frames, time)]!, time };
-          hud!.update(frame, {
-            preset: scenario.preset,
-            size: narrow ? 'medium' : 'small',
-            theme: hudTheme(),
-            // Stock footage has no calibrated pose or flight log.
-            panels: {
-              attitude: false,
-              ar: false,
-              bearingMarkers: false,
-              targets: false,
-              trends: false,
-              position: false,
-              actuators: !narrow,
-              tapes: !narrow,
-              status: !narrow,
+          // The recording and the telemetry share one clock, so read the media clock directly.
+          const time = media.currentTime;
+          const frame = replayFrame(flight, replayIndexAt(flight, time));
+          hud!.update(
+            { ...frame, time },
+            {
+              preset: flight.preset as VehiclePresetId,
+              size: canvas.clientWidth < 600 ? 'small' : 'medium',
+              theme: hudTheme(),
+              // The camera is calibrated and the pose is measured, so the spatial cues hold.
+              verticalFovDeg: visibleVerticalFovDeg(canvas, flight.camera),
+              panels: { bearingMarkers: false, targets: false, ar: !!flight.scene },
             },
-          });
+          );
         };
         repaint.current = paint;
         media.addEventListener('playing', start);
@@ -154,20 +168,19 @@ function HomePreview({
       media.removeEventListener('loadeddata', paint);
       hud?.destroy();
     };
-  }, [scenario, attempt]);
+  }, [recording, attempt]);
 
   return (
     <div id="home-preview" ref={viewport} className={layout.homeViewport}>
       <video
         ref={video}
         className={layout.videoLayer}
-        src="./media/coast.mp4"
-        poster="./media/coast.jpg"
+        src={`./replay/${recording.video}`}
         muted
         loop
         playsInline
         preload="auto"
-        aria-label="Recorded aerial coastline footage"
+        aria-label={`Recorded flight: ${recording.label}`}
         onError={() => {
           setError('The video could not be loaded.');
           onPaused(true);
@@ -177,7 +190,7 @@ function HomePreview({
         ref={hudCanvas}
         className={layout.canvasLayer}
         role="img"
-        aria-label="Illustrative HUD overlay"
+        aria-label="HUD overlay driven by the recorded telemetry"
         hidden={loading || !!error || !showHud}
       />
       {loading && !error && (
@@ -208,17 +221,15 @@ function HomePreview({
 }
 
 export function HomePage({
-  scenarios,
   theme,
   loadError,
   onRetry,
 }: {
-  scenarios?: readonly Scenario[];
   theme: string;
   loadError: string;
   onRetry: () => void;
 }) {
-  const [preset, setPreset] = useState<VehiclePresetId>('multirotor');
+  const [recordingId, setRecordingId] = useState(recordings[0]!.id);
   const [showHud, setShowHud] = useState(true);
   const [paused, setPaused] = useState(
     () => matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -231,7 +242,7 @@ export function HomePage({
     media.addEventListener('change', update);
     return () => media.removeEventListener('change', update);
   }, []);
-  const scenario = scenarios?.find((scenario) => scenario.preset === preset);
+  const recording = recordings.find((item) => item.id === recordingId);
   return (
     <div id="home-page" className={layout.pageScroll}>
       <div className={layout.homeLayout}>
@@ -255,9 +266,9 @@ export function HomePage({
           </div>
         </section>
         <section className={layout.homeDemo} aria-label="Video demonstration">
-          {scenario ? (
+          {recording ? (
             <HomePreview
-              scenario={scenario}
+              recording={recording}
               theme={theme}
               paused={paused}
               showHud={showHud}
@@ -289,26 +300,35 @@ export function HomePage({
                 {paused ? <Play /> : <Pause />}
               </ActionButton>
               <Picker
-                id="home-profile"
-                aria-label="HUD profile"
-                value={preset}
+                id="home-recording"
+                aria-label="Recorded flight"
+                value={recordingId}
                 styles={layout.picker}
-                onChange={(key) => key && setPreset(key as VehiclePresetId)}
+                onChange={(key) => key && setRecordingId(String(key))}
               >
-                <PickerItem id="multirotor">Multirotor</PickerItem>
-                <PickerItem id="plane">Fixed wing</PickerItem>
-                <PickerItem id="boat">USV / boat</PickerItem>
+                {recordings.map((item) => (
+                  <PickerItem id={item.id} key={item.id}>
+                    {item.label}
+                  </PickerItem>
+                ))}
               </Picker>
               <Checkbox isSelected={showHud} onChange={setShowHud}>
                 HUD
               </Checkbox>
             </div>
-            <Link isStandalone variant="secondary" href={`#lab/${preset}`}>
+            <Link isStandalone variant="secondary" href="#lab/multirotor">
               Customize in vehicle lab
             </Link>
           </div>
           <div className={layout.homeDemoToolbar}>
-            <Text styles={layout.quiet}>Recorded aerial footage · Illustrative telemetry</Text>
+            <Text styles={layout.quiet}>
+              {recording
+                ? `${recording.credit} · ${recording.license}` +
+                  (recording.derived.length
+                    ? ` · ${recording.derived.join(', ')} resolved, not recorded`
+                    : ' · every value measured')
+                : ''}
+            </Text>
             <Link isStandalone variant="secondary" href="#docs/rendering/recorded-video">
               Video source &amp; integration
             </Link>

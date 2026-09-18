@@ -89,6 +89,8 @@ export class MavlinkTelemetry {
   private alertSequence = 0;
   private autopilot?: number;
   private speedSamples = new Map<string, Reading>();
+  /** Set once GLOBAL_POSITION_INT supplies altitude, which then owns the altitude readings. */
+  private hasGlobalAltitude = false;
   constructor(private readonly identity: MavlinkOptions) {
     const ids = new Set<string>();
     for (const m of identity.servoOutputs ?? []) {
@@ -217,6 +219,7 @@ export class MavlinkTelemetry {
         this.frame.altitudeM = scaled('relative_alt', 0.001);
         this.frame.altitudeMslM = scaled('alt', 0.001);
         this.frame.altitudeDatum = 'REL HOME';
+        if (f.relative_alt !== undefined) this.hasGlobalAltitude = true;
         if (f.hdg !== undefined && f.hdg !== 65535) this.frame.headingDeg = scaled('hdg', 0.01);
         this.frame.climbMps = scaled('vz', -0.01);
         const vx = f.vx,
@@ -243,6 +246,14 @@ export class MavlinkTelemetry {
           (f.throttle ?? -1) >= 0 && (f.throttle ?? 101) <= 100,
         );
         this.frame.climbMps = r(f.climb);
+        // The common definition reports VFR_HUD altitude above mean sea level. A vehicle without
+        // a position fix publishes no GLOBAL_POSITION_INT, so fall back to it and label the datum
+        // MSL. GLOBAL_POSITION_INT keeps ownership wherever it arrives, at any point in the feed.
+        if (!this.hasGlobalAltitude && f.alt !== undefined) {
+          this.frame.altitudeM = r(f.alt);
+          this.frame.altitudeMslM = r(f.alt);
+          this.frame.altitudeDatum = 'MSL';
+        }
         break;
       case 'SYS_STATUS':
         this.frame.batteryVoltageV = scaled('voltage_battery', 0.001, f.voltage_battery !== 65535);

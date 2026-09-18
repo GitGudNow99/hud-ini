@@ -9,3 +9,6 @@ playwright-report/
 .env
 .env.*
 !.env.example
+
+# Third-party datasets and the media derived from them, kept out of the repository
+.datasets/
