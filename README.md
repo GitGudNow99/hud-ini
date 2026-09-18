@@ -9,6 +9,10 @@ Composable Canvas HUD instruments for vehicle telemetry, camera overlays and rec
 
 [Live demo](https://gitgudnow99.github.io/hud-ini/) · [Documentation](https://gitgudnow99.github.io/hud-ini/#docs/getting-started) · [npm package](https://www.npmjs.com/package/@gitgudnow99/hud-ini) · [Source](https://github.com/GitGudNow99/hud-ini) · [Issues](https://github.com/GitGudNow99/hud-ini/issues)
 
+<img src="https://raw.githubusercontent.com/GitGudNow99/hud-ini/main/assets/replay/uzh-fpv-overlay.gif" alt="Instruments over a recorded first-person-view flight, showing attitude, ground speed, altitude, heading, rotor demands and a world-space route" width="520">
+
+The overlay above runs on a recorded flight from the [UZH-FPV Drone Racing Dataset](https://fpv.ifi.uzh.ch/datasets/), with attitude, rotation rate, speed and altitude taken from laser-tracked ground truth at 500 Hz. See the [live demo](https://gitgudnow99.github.io/hud-ini/) for the same recording with a second flight, and [replay recorded flights](docs/replay.md) to build your own.
+
 - Transparent instruments for aircraft, multirotors, VTOL, rovers, boats, submersibles and PTZ cameras.
 - Framework-independent Canvas API, web component and optional React component.
 - Timestamp-aware readings, MAVLink adapters, configurable labels and CSS theme tokens.

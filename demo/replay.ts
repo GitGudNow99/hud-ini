@@ -19,16 +19,6 @@ export interface Recording {
 
 export const recordings: readonly Recording[] = [
   {
-    id: 'agz-zurich',
-    video: 'agz-zurich.mp4',
-    label: 'Zurich Urban MAV',
-    credit: 'Majdik, Till and Scaramuzza, IJRR 2017',
-    href: 'https://rpg.ifi.uzh.ch/zurichmavdataset.html',
-    license: 'No restriction',
-    licenseHref: 'https://rpg.ifi.uzh.ch/zurichmavdataset.html',
-    derived: [],
-  },
-  {
     id: 'uzh-fpv-outdoor-1-mavlink',
     video: 'uzh-fpv-outdoor-1.mp4',
     label: 'UZH-FPV outdoor 1',
@@ -37,6 +27,16 @@ export const recordings: readonly Recording[] = [
     license: 'CC BY-NC-SA 3.0',
     licenseHref: 'https://creativecommons.org/licenses/by-nc-sa/3.0/',
     derived: ['rotor demands', 'stick positions', 'flight mode'],
+  },
+  {
+    id: 'agz-zurich',
+    video: 'agz-zurich.mp4',
+    label: 'Zurich Urban MAV',
+    credit: 'Majdik, Till and Scaramuzza, IJRR 2017',
+    href: 'https://rpg.ifi.uzh.ch/zurichmavdataset.html',
+    license: 'No restriction',
+    licenseHref: 'https://rpg.ifi.uzh.ch/zurichmavdataset.html',
+    derived: [],
   },
 ];
 

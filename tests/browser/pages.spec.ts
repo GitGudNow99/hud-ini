@@ -24,10 +24,10 @@ test('home uses recorded video, synchronizes pause, and opens the selected vehic
   await expect(canvas).toBeHidden();
   await setChecked(page.getByRole('checkbox', { name: 'HUD', exact: true }), true);
   // Each recording carries its own telemetry, so switching reloads both video and scenario.
-  await pick(page, 'home-recording', 'uzh-fpv-outdoor-1-mavlink');
+  await pick(page, 'home-recording', 'agz-zurich');
   await expect(canvas).toBeVisible();
   await expect(video).toHaveJSProperty('videoHeight', 720);
-  await pick(page, 'home-recording', 'agz-zurich');
+  await pick(page, 'home-recording', 'uzh-fpv-outdoor-1-mavlink');
   await expect(canvas).toBeVisible();
   await page.getByRole('link', { name: 'Customize in vehicle lab' }).click();
   await expect(page).toHaveURL(/#lab\/multirotor$/);
@@ -90,7 +90,7 @@ test('a failed video has a usable retry and leaves documentation reachable', asy
   // Block the telemetry as well as the recording. A media element reports a blocked source
   // through its own error event, which headless browsers do not always raise before the
   // assertion runs, while a rejected fetch reaches the same state every time.
-  const blocked = ['**/replay/agz-zurich.mp4', '**/replay/agz-zurich.json'];
+  const blocked = ['**/replay/uzh-fpv-outdoor-1.mp4', '**/replay/uzh-fpv-outdoor-1-mavlink.json'];
   for (const pattern of blocked) await page.route(pattern, (route) => route.abort());
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeVisible();
