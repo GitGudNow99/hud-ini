@@ -87,10 +87,14 @@ test('docs open without fixtures, support deep links, search, copying and topic 
 });
 
 test('a failed video has a usable retry and leaves documentation reachable', async ({ page }) => {
-  await page.route('**/replay/agz-zurich.mp4', (route) => route.abort());
+  // Block the telemetry as well as the recording. A media element reports a blocked source
+  // through its own error event, which headless browsers do not always raise before the
+  // assertion runs, while a rejected fetch reaches the same state every time.
+  const blocked = ['**/replay/agz-zurich.mp4', '**/replay/agz-zurich.json'];
+  for (const pattern of blocked) await page.route(pattern, (route) => route.abort());
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeVisible();
-  await page.unroute('**/replay/agz-zurich.mp4');
+  for (const pattern of blocked) await page.unroute(pattern);
   await page.getByRole('button', { name: 'Retry preview' }).click();
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeHidden();
   await page.getByRole('button', { name: 'Play home preview' }).click();
