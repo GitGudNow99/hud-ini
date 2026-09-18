@@ -13,7 +13,7 @@ test('home uses recorded video, synchronizes pause, and opens the selected vehic
   await expect
     .poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime))
     .toBeGreaterThan(0.2);
-  expect(await video.evaluate((v: HTMLVideoElement) => v.videoWidth)).toBe(1920);
+  expect(await video.evaluate((v: HTMLVideoElement) => v.videoWidth)).toBe(1280);
   await page.getByRole('button', { name: 'Pause home preview' }).click();
   const time = await video.evaluate((v: HTMLVideoElement) => v.currentTime);
   const pixels = await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL());
@@ -23,13 +23,15 @@ test('home uses recorded video, synchronizes pause, and opens the selected vehic
   await setChecked(page.getByRole('checkbox', { name: 'HUD', exact: true }), false);
   await expect(canvas).toBeHidden();
   await setChecked(page.getByRole('checkbox', { name: 'HUD', exact: true }), true);
-  for (const preset of ['plane', 'boat']) {
-    await pick(page, 'home-profile', preset);
-    await expect(canvas).toBeVisible();
-  }
+  // Each recording carries its own telemetry, so switching reloads both video and scenario.
+  await pick(page, 'home-recording', 'uzh-fpv-outdoor-1-mavlink');
+  await expect(canvas).toBeVisible();
+  await expect(video).toHaveJSProperty('videoHeight', 720);
+  await pick(page, 'home-recording', 'agz-zurich');
+  await expect(canvas).toBeVisible();
   await page.getByRole('link', { name: 'Customize in vehicle lab' }).click();
-  await expect(page).toHaveURL(/#lab\/boat$/);
-  await expect(page.locator('#hud canvas')).toHaveAttribute('aria-label', /USV/);
+  await expect(page).toHaveURL(/#lab\/multirotor$/);
+  await expect(page.locator('#hud canvas')).toHaveAttribute('aria-label', /Altitude/);
   await page.getByRole('link', { name: 'hud-ini home', exact: true }).click();
   await expect(page.locator('#home-preview video')).toBeVisible();
   expect(errors).toEqual([]);
