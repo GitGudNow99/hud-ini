@@ -34,6 +34,9 @@ test('home uses recorded video, synchronizes pause, and opens the selected vehic
   await expect(page.locator('#hud canvas')).toHaveAttribute('aria-label', /Altitude/);
   await page.getByRole('link', { name: 'hud-ini home', exact: true }).click();
   await expect(page.locator('#home-preview video')).toBeVisible();
+  const source = page.getByRole('link', { name: 'Source on GitHub' });
+  await expect(source).toHaveAttribute('href', 'https://github.com/GitGudNow99/hud-ini');
+  await expect(source).toHaveAttribute('target', '_blank');
   expect(errors).toEqual([]);
 });
 

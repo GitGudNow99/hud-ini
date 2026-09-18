@@ -7,10 +7,13 @@ import {
   SegmentedControl,
   SegmentedControlItem,
   InlineAlert,
+  LinkButton,
   ProgressCircle,
+  Text,
 } from '@react-spectrum/s2';
 import type { Scenario } from './catalogue';
 import { ThemeStudio, useThemeStudio } from './theme-studio';
+import { GithubIcon } from './github-icon';
 import { documentation } from './docs-content';
 import logo from '../assets/brand/hud-ini-lockup.svg';
 import logoDark from '../assets/brand/hud-ini-lockup-dark.svg';
@@ -115,7 +118,21 @@ export function App() {
           </SegmentedControl>
         </nav>
         <div className={layout.grow} />
-        <ThemeStudio studio={studio} palette={theme} onPaletteChange={setTheme} />
+        <div className={layout.headerActions}>
+          <LinkButton
+            id="source-link"
+            href="https://github.com/GitGudNow99/hud-ini"
+            target="_blank"
+            rel="noreferrer"
+            variant="secondary"
+            fillStyle="outline"
+            aria-label="Source on GitHub"
+          >
+            <GithubIcon />
+            <Text>GitHub</Text>
+          </LinkButton>
+          <ThemeStudio studio={studio} palette={theme} onPaletteChange={setTheme} />
+        </div>
       </header>
       <Suspense
         fallback={

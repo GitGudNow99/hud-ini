@@ -35,6 +35,13 @@ export const headerNav = style({
   width: { default: 'full', md: 'auto' },
 });
 export const actions = style({ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 });
+/** Header actions stay on one row together, so a narrow header wraps them as a single unit. */
+export const headerActions = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  flexShrink: 0,
+});
 export const stack = style({ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 });
 export const compactStack = style({
   display: 'flex',
