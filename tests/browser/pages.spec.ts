@@ -100,7 +100,10 @@ test('a failed video has a usable retry and leaves documentation reachable', asy
   for (const pattern of blocked) await page.unroute(pattern);
   await page.getByRole('button', { name: 'Retry preview' }).click();
   await expect(page.getByRole('heading', { name: 'Preview unavailable' })).toBeHidden();
-  await page.getByRole('button', { name: 'Play home preview' }).click();
+  // Only the video error path pauses the preview, so the toggle can sit in either state by the
+  // time the retry succeeds. Read its label rather than assuming which failure arrived first.
+  const toggle = page.getByRole('button', { name: /home preview$/ });
+  if ((await toggle.getAttribute('aria-label')) === 'Play home preview') await toggle.click();
   await expect
     .poll(() => page.locator('video').evaluate((v: HTMLVideoElement) => v.currentTime))
     .toBeGreaterThan(0);
