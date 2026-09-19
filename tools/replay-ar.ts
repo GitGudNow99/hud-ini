@@ -90,7 +90,10 @@ export function replayFrame(scenario: ReplayScenario, index: number): HudFrame {
         position: pose.position as HudWorldPoint,
         viewProjection: arCameraMatrix(pose, scenario.camera),
       },
-      objects: scenario.scene.objects,
+      // The scene is static world geometry, current at every frame. Leaving the stored
+      // timestamp in place makes the renderer treat each object as stale after one second
+      // and drop it for the rest of the recording.
+      objects: scenario.scene.objects.map((object) => ({ ...object, at: rest.time })),
     },
   };
 }
