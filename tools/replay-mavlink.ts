@@ -37,6 +37,12 @@ if (!scenarioPath) throw new Error('Pass --scenario with a converter output.');
 const outPath = args.get('out') ?? scenarioPath.replace(/\.json$/, '-mavlink.json');
 /** Synthesise a plausible battery discharge. Off by default, because no dataset records one. */
 const demoPower = args.get('demo-power') === 'true';
+/**
+ * Identity of the rebuilt scenario. The rebuilt file inherits the source names unless you pass
+ * these, which leaves it pointing at a recording that the output directory does not hold.
+ */
+const outId = args.get('id');
+const outVideo = args.get('video');
 
 const scenario = JSON.parse(await readFile(scenarioPath, 'utf8')) as ReplayScenario;
 const frames = scenario.frames;
@@ -136,12 +142,20 @@ function sticks(at: number, throttle: number): StickInput | undefined {
 }
 
 const rotorLabels = ['M1 FR', 'M2 FL', 'M3 RL', 'M4 RR'];
-const positions: [number, number][] = [
-  [0.72, -0.72],
-  [-0.72, -0.72],
-  [-0.72, 0.72],
-  [0.72, 0.72],
-];
+/**
+ * Rotors sit on a circle of radius 0.78, the same ring the synthetic fixtures use, because the
+ * renderer draws each arm out to the rotor's distance from the centre. Placing them at 0.72 on
+ * both axes puts them at radius 1.02 and stretches every arm by a third.
+ */
+const rotorRing = 0.78;
+const positions: [number, number][] = (
+  [
+    [1, -1],
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
+  ] as const
+).map(([x, y]) => [(x * rotorRing) / Math.SQRT2, (y * rotorRing) / Math.SQRT2]);
 const servoOutputs: ServoOutputMapping[] = rotorLabels.map((label, i) => ({
   id: `motor${i + 1}`,
   label,
@@ -268,7 +282,8 @@ await writeFile(
   JSON.stringify(
     roundScenario<ReplayScenario>({
       ...scenario,
-      id: `${scenario.id}-mavlink`,
+      id: outId ?? `${scenario.id}-mavlink`,
+      video: outVideo ?? scenario.video,
       pipeline: 'Encoded as MAVLink 2, decoded, and rebuilt through MavlinkTelemetry.',
       derived,
       frames: rebuilt,
